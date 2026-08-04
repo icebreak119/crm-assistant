@@ -1,0 +1,71 @@
+/* 安卓 APK 移动端全局适配 */
+
+/* 禁止文字自动调整大小 + 消除点击高亮 + 禁止双击缩放 */
+html {
+  -webkit-text-size-adjust: 100%;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+/* 禁止页面弹性滚动 + App 内禁止长按选择文本 */
+body {
+  overscroll-behavior-y: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* 表单元素允许选择文本 */
+input,
+textarea,
+select {
+  -webkit-user-select: auto;
+  user-select: auto;
+}
+
+/* 防止图片和链接长按弹出系统菜单 */
+img,
+a {
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+/* 安卓旧版 WebView backdrop-filter 兼容 fallback */
+@supports not (backdrop-filter: blur(10px)) {
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl {
+    background-color: var(--background) !important;
+  }
+}
+
+/* ===== 安全区域工具类 ===== */
+
+/* 底部导航安全区域 padding */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* 列表页 main 底部留白（底部导航高度 + 安全区） */
+.pb-nav-safe {
+  padding-bottom: calc(6rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* 详情页底部留白（底部导航 + 操作栏 + 安全区） */
+.pb-detail-safe {
+  padding-bottom: calc(9rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* 详情页底部操作栏定位（在底部导航上方） */
+.bottom-nav-safe {
+  bottom: calc(4rem + env(safe-area-inset-bottom, 0px));
+}
+
+/* 隐藏横向滚动条（筛选药丸、Tab 栏等移动端横向滚动区域） */
+.no-scrollbar {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
